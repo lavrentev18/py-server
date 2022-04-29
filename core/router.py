@@ -1,3 +1,5 @@
+from routes.web import register as register_web
+
 class Router:
     def __init__(self):
         self.routes = {}
@@ -7,7 +9,7 @@ class Router:
 
     def handle(self, context):
         self.routes.get(context.path)(context)
-    #def post(self):
 
 
 router = Router()
+register_web(router)

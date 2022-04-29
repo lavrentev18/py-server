@@ -4,12 +4,11 @@ import os
 
 def run():
     try:
-        app.server_forever()
-        print("Server in started in host =" + os.getenv("HOST") + " and port = " + (os.getenv("PORT")))
+        print("Server in started in http://" + os.getenv("HOST") + ":" + (os.getenv("PORT")))
+        app.serve_forever()
     except Exception as e:
         print(e)
         app.shutdown()
 
-print(app)
 run()
 

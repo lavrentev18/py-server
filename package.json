@@ -1,0 +1,14 @@
+{
+  "name": "py-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:lavrentev18/py-server.git",
+  "author": "windx-foobar <bezalkogoln1ycoder@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "HOST=localhost PORT=3000 nodemon --exec python3 main.py"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
