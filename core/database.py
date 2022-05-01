@@ -1,5 +1,4 @@
 from config.database import DB_NAME, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER
-#DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASSWORD
 import psycopg2
 
 
@@ -31,7 +30,9 @@ class Database:
         cursor = self.connection.cursor()
         try:
             cursor.execute(query)
+            result = cursor.fetchall()
             print("Query executed successfully")
+            return result
         except psycopg2.OperationalError as e:
             print(f"The error '{e}' occurred")
             raise e
