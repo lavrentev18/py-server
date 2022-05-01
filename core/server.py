@@ -1,12 +1,27 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from core.router import router
-import os
+from .router import router
+from .view import templateEngine
+import config
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def __init__(self, request, client_address, server):
         super().__init__(request, client_address, server)
         self.method = ""
-    # определяем метод `do_GET`
+    
+    def render(self, *args):
+        result = templateEngine.render(*args)
+
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(bytes(result, "utf8"))
+
+    def handleError(self, code = 500):
+        result = templateEngine.render(str(code))
+
+        self.send_response(code)
+        self.end_headers()
+        self.wfile.write(bytes(result, "utf8"))
+
     def do_GET(self):
         self.method = "GET"
         router.handle(self)
@@ -16,4 +31,4 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         router.handle(self)
 
 
-app = HTTPServer((os.getenv("HOST", "localhost"), int(os.getenv("PORT", 3001))), SimpleHTTPRequestHandler)
+app = HTTPServer((config.HOST, config.PORT), SimpleHTTPRequestHandler)
