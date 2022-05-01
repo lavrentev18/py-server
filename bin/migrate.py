@@ -15,9 +15,10 @@ def run():
             DB.execute(create_table_20220501.down_query)
         if argv[1] == "--up":
             DB.execute(create_table_20220501.up_query)
+
+        print("Migrations complete!", flush = True)
     except Exception as e:
-        print("write --up or --down")
-        print(e)
+        print("write --up or --down", flush = True)
 
     DB.disconnect()
 
