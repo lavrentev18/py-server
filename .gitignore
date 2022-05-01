@@ -4,3 +4,4 @@ test.py
 __pycache__
 node_modules
 /py_server.egg-info
+/.env

@@ -1,5 +1,9 @@
+autopep8==1.6.0
 Jinja2==3.1.2
 MarkupSafe==2.1.1
 protobuf==3.20.1
 psycopg2==2.9.3
--e git+ssh://git@github.com/lavrentev18/py-server.git@deea89eed2b0c48aa52afc741322abf3a3dcda97#egg=py_server
+-e git+ssh://git@github.com/lavrentev18/py-server.git@2ae0ed441323342c528778af5b351374664245c7#egg=py_server
+pycodestyle==2.8.0
+python-dotenv==0.20.0
+toml==0.10.2
