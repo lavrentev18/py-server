@@ -1,1 +1,2 @@
-from config.database import *
+from .database import *
+from .views import *
