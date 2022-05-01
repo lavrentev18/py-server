@@ -1,6 +1,5 @@
 from routes.web import register as register_web
 
-
 class Router:
     def __init__(self):
         self.routes = []
