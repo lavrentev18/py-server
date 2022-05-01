@@ -1,5 +1,7 @@
-DB_HOST = "localhost"
-DB_NAME = "python_web_DB"
-DB_USER = "postgres"
-DB_PASSWORD = "159753"
-DB_PORT = 3000
+import os
+
+DB_HOST = os.getenv("DB_HOST", "localhost") 
+DB_NAME = os.getenv("DB_NAME", "db")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = os.getenv("DB_PORT")
