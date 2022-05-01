@@ -11,7 +11,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.method = "GET"
         router.handle(self)
 
-    def po_POST(self):
+    def do_POST(self):
         self.method = "POST"
         router.handle(self)
 
