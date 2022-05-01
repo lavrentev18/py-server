@@ -1,23 +1,25 @@
-from config.database import DB_NAME, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER
+import config
 import psycopg2
-
 
 class Database:
     def __init__(self):
         self.connection = None
+        self.cursor = None
 
     def connect(self):
         self.connection = None
         try:
             self.connection = psycopg2.connect(
-                database=DB_NAME,
-                user=DB_USER,
-                password=DB_PASSWORD,
-                host=DB_HOST,
-                port=DB_PORT,
+                database=config.DB_NAME,
+                user=config.DB_USER,
+                password=config.DB_PASSWORD,
+                host=config.DB_HOST,
+                port=config.DB_PORT,
             )
 
-            print("Connection to PostgreSQL DB successful")
+            # TODO: Написать логгер, который будет логировать этот мусор.
+            # В логгере должен быть verbose мод, который будет все подряд выводить
+            #print("Connection to PostgreSQL DB successful")
         except psycopg2.OperationalError as e:
             print(f"The error '{e}' occurred")
             raise e
@@ -27,15 +29,36 @@ class Database:
 
     def execute(self, query):
         self.connection.autocommit = True
-        cursor = self.connection.cursor()
+        self.cursor = self.connection.cursor()
         try:
-            cursor.execute(query)
-            result = cursor.fetchall()
-            print("Query executed successfully")
-            return result
-        except psycopg2.OperationalError as e:
-            print(f"The error '{e}' occurred")
+            self.cursor.execute(query)
+
+            # TODO: Написать логгер, который будет логировать этот мусор.
+            # В логгере должен быть verbose мод, который будет все подряд выводить
+            #print("Query executed successfully")
+
+            return self
+        except Exception as e:
+            print(f"[DATABASE ERROR({e.__class__})]: '{e}' occurred")
             raise e
+
+    def toDict(self, keys = ()):
+        rows = self.cursor.fetchall()
+        dictedRows = []
+
+        if len(rows) > 0 or len(keys) > 0:
+            for i in range(len(rows)):
+                row = rows[i]
+                dictRow = {}
+
+                for keysKey in range(len(keys)):
+                    dictRow[keys[keysKey]] = row[keysKey]
+                
+                dictedRows.append(dictRow)
+
+            return dictedRows
+        else:
+            return []
 
 
 DB = Database()
