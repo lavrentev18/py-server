@@ -6,7 +6,7 @@ class View:
     def __init__(self):
         self.env = Environment(loader=FileSystemLoader(config.TEMPLATES_DIR), autoescape=select_autoescape())
 
-    def render(self, template, params=None):
+    def render(self, template, params={}):
         templateName = re.sub(r"\..*", "", template)
 
         compiled = self.env.get_template("{}{}".format(templateName, config.TEMPLATES_EXTENSION))
