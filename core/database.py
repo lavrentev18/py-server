@@ -1,4 +1,4 @@
-from config.database import database
+from config.database import DB_NAME, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER
 #DB_HOST, DB_NAME, DB_PORT, DB_USER, DB_PASSWORD
 import psycopg2
 
@@ -20,4 +20,4 @@ class Database:
 
 
 DB = Database()
-DB.create_connection()
+#DB.create_connection()

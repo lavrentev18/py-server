@@ -1,4 +1,4 @@
-from core import app
+from core import app, DB
 import os
 
 
@@ -12,5 +12,6 @@ def run():
 
 
 
+DB.create_connection()
 run()
 
