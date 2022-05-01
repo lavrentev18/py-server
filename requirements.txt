@@ -1,2 +1,3 @@
 protobuf==3.20.1
 psycopg2==2.9.3
+-e git+ssh://git@github.com/lavrentev18/py-server.git@147a876ac26801545988c3bed95b5784a8ebe3fd#egg=py_server
