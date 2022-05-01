@@ -14,7 +14,9 @@ class Router:
         for i in range(len(self.routes)):
             route_element = self.routes[i]
             if route_element[0] == context.path and route_element[1] == context.method:
-                route_element[2](context)
+                return route_element[2](context)
+            else:
+                return context.handleError(404)
 
 
 router = Router()
