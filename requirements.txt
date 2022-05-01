@@ -1,3 +1,5 @@
+Jinja2==3.1.2
+MarkupSafe==2.1.1
 protobuf==3.20.1
 psycopg2==2.9.3
--e git+ssh://git@github.com/lavrentev18/py-server.git@147a876ac26801545988c3bed95b5784a8ebe3fd#egg=py_server
+-e git+ssh://git@github.com/lavrentev18/py-server.git@deea89eed2b0c48aa52afc741322abf3a3dcda97#egg=py_server
