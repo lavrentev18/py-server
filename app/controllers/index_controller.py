@@ -16,9 +16,10 @@ class IndexController:
         try:
             id = req.params.get("id")
 
-            [Post] = DB.execute(f"SELECT * FROM posts WHERE id = {id}").toDict(("id", "title", "description"))
-
-            return res.render("post", { 'post': Post })
+            Posts = DB.execute(f"SELECT * FROM posts WHERE id = {id}").toDict(("id", "title", "description"))
+            if not(len(Posts)): return res.handleError(404)
+                
+            return res.render("post", { 'post': Posts[0] })
         except Exception as e:
             print(e, flush = True)
             return res.handleError()
