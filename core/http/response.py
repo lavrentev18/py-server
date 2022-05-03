@@ -1,17 +1,20 @@
-from core.database import DB
+from core.view import templateEngine
 
+class Response:
+    def __init__(self, serverContext):
+        self.serverContext = serverContext
 
-class Responce:
-    def responce(self, id=1):
-        try:
-            users = DB.execute("SELECT * FROM posts").toDict(("id", "title", "description"))
-        except Exception as e:
-            print(e, flush = True)
-            #context.handleError()
-        #print(users)
+    def render(self, *args):
+        result = templateEngine.render(*args)
 
+        self.serverContext.send_response(200)
+        self.serverContext.end_headers()
+        self.serverContext.wfile.write(bytes(result, "utf8"))
 
-        #return ("user " + users.params.id)
+    def handleError(self, code = 500):
+        result = templateEngine.render(str(code))
 
-resp = Responce()
-resp.responce()
+        self.serverContext.send_response(code)
+        self.serverContext.end_headers()
+        self.serverContext.wfile.write(bytes(result, "utf8"))
+

@@ -3,9 +3,9 @@
 __all__ = [
   "app",
   "Request",
-  "Responce"
+  "Response"
 ]
 
 from core.http.server import app
 from core.http.request import Request
-from core.http.response import Responce
+from core.http.response import Response
