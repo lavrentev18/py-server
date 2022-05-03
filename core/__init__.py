@@ -7,7 +7,7 @@ __all__ = [
   "templateEngine"
 ]
 
-from core.server import app
+from core.http.server import app
 from core.router import router
 from core.database import DB
 from core.view import templateEngine

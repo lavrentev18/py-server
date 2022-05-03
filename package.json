@@ -6,7 +6,7 @@
   "author": "windx-foobar <bezalkogoln1ycoder@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env HOST=localhost PORT=3001 nodemon --exec py main.py"
+    "start": "nodemon --exec py main.py"
   },
   "devDependencies": {
     "nodemon": "^2.0.16",

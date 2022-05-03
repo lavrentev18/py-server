@@ -44,19 +44,19 @@ class Database:
 
     def toDict(self, keys = ()):
         rows = self.cursor.fetchall()
-        dictedRows = []
+        dicted_rows = []
 
         if len(rows) > 0 or len(keys) > 0:
             for i in range(len(rows)):
                 row = rows[i]
-                dictRow = {}
+                dict_row = {}
 
                 for keysKey in range(len(keys)):
-                    dictRow[keys[keysKey]] = row[keysKey]
-                
-                dictedRows.append(dictRow)
+                    dict_row[keys[keysKey]] = row[keysKey]
 
-            return dictedRows
+                dicted_rows.append(dict_row)
+
+            return dicted_rows
         else:
             return []
 

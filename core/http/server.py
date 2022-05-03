@@ -1,13 +1,13 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from .router import router
-from .view import templateEngine
+from core.router import router
+from core.view import templateEngine
 import config
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def __init__(self, request, client_address, server):
         super().__init__(request, client_address, server)
         self.method = ""
-    
+
     def render(self, *args):
         result = templateEngine.render(*args)
 
@@ -31,4 +31,4 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         router.handle(self)
 
 
-app = HTTPServer((config.HOST, config.PORT), SimpleHTTPRequestHandler)
+app = HTTPServer((config.HOST, int(config.PORT)), SimpleHTTPRequestHandler)

@@ -1,6 +1,6 @@
 import config
 from core import app, DB
-import os
+
 
 def run():
     try:
