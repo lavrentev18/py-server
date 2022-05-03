@@ -1,3 +1,4 @@
+import re
 from routes.web import register as register_web
 
 class Router:
@@ -10,13 +11,26 @@ class Router:
     def post(self, route, action):
         self.routes.append((route, "POST", action))
 
-    def handle(self, context):
+    def handle(self, req, res):
         for i in range(len(self.routes)):
-            route_element = self.routes[i]
-            if route_element[0] == context.path and route_element[1] == context.method:
-                return route_element[2](context)
-            else:
-                return context.handleError(404)
+            route_path, route_method, route_action = self.routes[i]
+            path_regex = "^" + re.sub(r":\w+", '\\\w+', route_path) + "$"
+
+            if re.compile(path_regex).match(req.path) and route_method == req.method:
+                route_path_chunked = route_path.split("/")
+                req_path_chunked = req.path.split("/")
+
+                for i in range(len(route_path_chunked)):
+                  path = route_path_chunked[i]
+                  searched = re.search(r":(\w+)", path)
+
+                  if searched:
+                    param_name = searched.group(1)
+                    req.params[param_name] = req_path_chunked[i]
+
+                return route_action(req, res)
+
+        return res.handleError(404)
 
 
 router = Router()
